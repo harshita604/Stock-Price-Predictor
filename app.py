@@ -67,7 +67,7 @@ def predict_next_7_days(df):
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mean_squared_error')
     early_stop = EarlyStopping(monitor='loss', patience=3)
-    model.fit(x_train, y_train, batch_size=32, epochs=10)
+    model.fit(x_train, y_train, batch_size=128, epochs=50)
     last_60_days = scaled_data[-60:,0]
     forecast_input = np.reshape(last_60_days, (1, last_60_days.shape[0], 1))
     forecast = []
@@ -105,8 +105,20 @@ def plot_predicted_prices(predicted_prices):
 # Streamlit App
 def main():
     st.title('Stock Price Prediction App')
+    st.markdown("""
+    ## What This App Does:
+    This application predicts stock prices for the next 7 days using historical data from Yahoo Finance.
+    It uses **LSTM (Long Short-Term Memory)** models to make predictions based on the closing stock prices.
     
-    # Ticker input with autocomplete
+    The app also incorporates **Moving Averages** (50-day and 200-day) to provide insights into trends over 
+    different periods. These moving averages help the model better capture long-term and short-term trends.
+    
+    ### Disclaimer:
+    Please note that this is just a prediction model. The stock market is highly volatile and unpredictable.
+    These predictions should not be considered financial advice.
+    """)
+    
+    # Ticker input 
     ticker = st.text_input('Enter stock ticker (e.g., AAPL, TSLA, MSFT):')
     
     if ticker:
