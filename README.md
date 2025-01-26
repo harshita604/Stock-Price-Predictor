@@ -9,7 +9,7 @@ This web application predicts stock prices for the next 7 days using historical 
  3) LSTM model with adjustable hyperparameters (epochs and batch size).
  4) Displays performance metrics (R2 Score and RMSE) of the model.
 
-To run the application:
+### Installation and setup:
 1) Clone the respository
  ```
     git clone https://github.com/harshita604/stock-price-prediction-app.git
@@ -26,5 +26,6 @@ To run the application:
    streamlit run app.py
   ```
 
+Visit the app at: https://stockpricespredictor.streamlit.app
 
 Please note that this application provides predictions based on historical stock data and uses machine learning techniques. The stock market is volatile and predictions should not be considered as financial advice.
