@@ -25,3 +25,6 @@ To run the application:
  ```
    streamlit run app.py
   ```
+
+
+Please note that this application provides predictions based on historical stock data and uses machine learning techniques. The stock market is volatile and predictions should not be considered as financial advice.
