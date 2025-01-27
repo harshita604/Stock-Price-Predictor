@@ -15,11 +15,11 @@ from sklearn.metrics import r2_score
 
 # Function to download the data for a given ticker
 def download_data(ticker):
-    end_date = datetime.today().strftime('%Y-%m-%d')
+    #end_date = datetime.today().strftime('%Y-%m-%d')
     start_year = datetime.now().year - 4
     start_date = f'{start_year}-01-01'
     # Download the data
-    df = yf.download(ticker, start=start_date, end=end_date)
+    df = yf.download(ticker, start=start_date,interval='1d', progress=False)
     return df
 
 # Function to visualize the last 6 months of data
@@ -174,7 +174,7 @@ def main():
         st.subheader(f'Predicted Prices for the Next 7 Days:')
         predicted_prices, rmse, r2 = predict_next_7_days(df,epochs, batch_size)
         predicted_df = pd.DataFrame({
-            "Date": pd.date_range(start=datetime.today(), periods=7),
+            "Date": pd.date_range(start=(datetime.today() + timedelta(days=1)), periods=7),
             "Predicted Price": predicted_prices })
         st.write(predicted_df)
         plot_predicted_prices(predicted_prices)
